@@ -30,7 +30,7 @@ class _PokemonValueIndicatorWidgetState
         children: [
           Text(
             widget.label,
-            style: const TextStyle(fontSize: 20),
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
           ),
           const SizedBox(
             height: 10,

@@ -26,6 +26,13 @@ class _PokemonProfilePageState extends State<PokemonProfilePage> {
         PokemonProfileRepositoryImpl().getPokemon(widget.pokemonName);
   }
 
+  String capitalizeFirstLetter(String text) {
+    if (text.isEmpty) {
+      return text;
+    }
+    return text[0].toUpperCase() + text.substring(1).toLowerCase();
+  }
+
   String _getPokemonImageUrl(int id) {
     return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png';
   }
@@ -64,8 +71,8 @@ class _PokemonProfilePageState extends State<PokemonProfilePage> {
             );
           } else if (snapshot.hasData) {
             final pokemon = snapshot.data!;
-            final pokemonHeight = (pokemon.height / 10);
-            final pokemonWeight = (pokemon.weight / 10);
+            final double pokemonHeight = (pokemon.height / 10);
+            final double pokemonWeight = (pokemon.weight / 10);
             return SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 15),
@@ -83,58 +90,80 @@ class _PokemonProfilePageState extends State<PokemonProfilePage> {
                       ),
                       Image.network(
                         _getPokemonImageUrl(pokemon.id),
-                        scale: 0.5,
+                        scale: 0.3,
                         errorBuilder: (context, error, stackTrace) {
                           return const Icon(Icons.error,
                               color: Colors.red, size: 50);
                         },
                       ),
-                      PokemonValueIndicatorWidget(
-                        label: 'Altura: $pokemonHeight m',
-                        value: pokemonHeight.toInt(),
-                        totalValue: 5,
-                        color: Colors.lightBlue,
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 10.0),
+                        child: Text(
+                          'Informações e atributos',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
-                      PokemonValueIndicatorWidget(
-                        label: 'Peso: ${pokemon.weight / 10} kg',
-                        value: pokemonWeight.toInt(),
-                        totalValue: 1000,
-                        color: Colors.green,
-                      ),
-                      PokemonValueIndicatorWidget(
-                        label:
-                            '${pokemon.stats[0].statName}: ${pokemon.stats[0].baseStat}',
-                        value: pokemonWeight.toInt(),
-                        totalValue: 255,
-                        color: Colors.redAccent,
-                      ),
-                      PokemonValueIndicatorWidget(
-                        label:
-                            '${pokemon.stats[1].statName}: ${pokemon.stats[1].baseStat}',
-                        value: pokemonWeight.toInt(),
-                        totalValue: 180,
-                        color: Colors.deepPurpleAccent,
-                      ),
-                      PokemonValueIndicatorWidget(
-                        label:
-                            '${pokemon.stats[2].statName}: ${pokemon.stats[2].baseStat}',
-                        value: pokemonWeight.toInt(),
-                        totalValue: 230,
-                        color: Colors.blue,
-                      ),
-                      PokemonValueIndicatorWidget(
-                        label:
-                            '${pokemon.stats[3].statName}: ${pokemon.stats[3].baseStat}',
-                        value: pokemonWeight.toInt(),
-                        totalValue: 180,
-                        color: Colors.teal,
-                      ),
-                      PokemonValueIndicatorWidget(
-                        label:
-                            '${pokemon.stats[4].statName}: ${pokemon.stats[4].baseStat}',
-                        value: pokemonWeight.toInt(),
-                        totalValue: 230,
-                        color: Colors.lime,
+                      Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(),
+                            borderRadius: BorderRadius.circular(12)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Column(
+                            children: [
+                              PokemonValueIndicatorWidget(
+                                label: 'Altura: $pokemonHeight m',
+                                value: pokemonHeight.toInt(),
+                                totalValue: 5,
+                                color: Colors.lightBlue,
+                              ),
+                              PokemonValueIndicatorWidget(
+                                label: 'Peso: ${pokemon.weight / 10} kg',
+                                value: pokemonWeight.toInt(),
+                                totalValue: 1000,
+                                color: Colors.green,
+                              ),
+                              PokemonValueIndicatorWidget(
+                                label:
+                                    '${pokemon.stats[0].statName.toUpperCase()}: ${pokemon.stats[0].baseStat}',
+                                value: pokemonWeight.toInt(),
+                                totalValue: 255,
+                                color: Colors.redAccent,
+                              ),
+                              PokemonValueIndicatorWidget(
+                                label: capitalizeFirstLetter(
+                                    '${pokemon.stats[1].statName}: ${pokemon.stats[1].baseStat}'),
+                                value: pokemonWeight.toInt(),
+                                totalValue: 180,
+                                color: Colors.deepPurpleAccent,
+                              ),
+                              PokemonValueIndicatorWidget(
+                                label: capitalizeFirstLetter(
+                                    '${pokemon.stats[2].statName}: ${pokemon.stats[2].baseStat}'),
+                                value: pokemonWeight.toInt(),
+                                totalValue: 230,
+                                color: Colors.blue,
+                              ),
+                              PokemonValueIndicatorWidget(
+                                label: capitalizeFirstLetter(
+                                    '${pokemon.stats[3].statName}: ${pokemon.stats[3].baseStat}'),
+                                value: pokemonWeight.toInt(),
+                                totalValue: 180,
+                                color: Colors.teal,
+                              ),
+                              PokemonValueIndicatorWidget(
+                                label: capitalizeFirstLetter(
+                                    '${pokemon.stats[4].statName}: ${pokemon.stats[4].baseStat}'),
+                                value: pokemonWeight.toInt(),
+                                totalValue: 230,
+                                color: Colors.lime,
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ],
                   ),
