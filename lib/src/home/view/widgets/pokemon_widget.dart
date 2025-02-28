@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pokedex/src/shared/routes/app_routes.dart';
 
 class PokemonWidget extends StatelessWidget {
   final String pokemonName;
@@ -21,30 +23,35 @@ class PokemonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(12.0),
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(),
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Column(
-          children: [
-            Image.network(
-              scale: 0.5,
-              _getPokemonImageUrl(),
-              errorBuilder: (context, error, stackTrace) {
-                return const Icon(Icons.error,
-                    size: 50); // Ícone em caso de erro
-              },
-            ),
-            Text(
-              pokemonName,
-              style: const TextStyle(
-                fontSize: 25,
-                color: Colors.black,
-                fontWeight: FontWeight.w600,
+      child: GestureDetector(
+        onTap: () {
+          Modular.to.pushNamed(AppRoutes.pokemonProfile,
+              arguments: {'name': pokemonName});
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            border: Border.all(),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Column(
+            children: [
+              Image.network(
+                scale: 0.5,
+                _getPokemonImageUrl(),
+                errorBuilder: (context, error, stackTrace) {
+                  return const Icon(Icons.error, color: Colors.red, size: 50);
+                },
               ),
-            ),
-          ],
+              Text(
+                pokemonName,
+                style: const TextStyle(
+                  fontSize: 25,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -1,4 +1,4 @@
-import 'package:pokedex/src/home/data/home_datasource.dart';
+import 'package:pokedex/src/home/data/datasource/home_datasource.dart';
 import 'package:pokedex/src/home/domain/entities/pokemon_entity.dart';
 
 class HomeRepository {

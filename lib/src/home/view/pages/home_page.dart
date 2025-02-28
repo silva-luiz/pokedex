@@ -79,21 +79,39 @@ class _HomePageState extends State<HomePage> {
           ? const Center(child: CircularProgressIndicator())
           : Padding(
               padding: const EdgeInsets.all(8.0),
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  childAspectRatio: 3 / 4,
-                ),
-                itemCount: filteredPokemons.length,
-                itemBuilder: (context, index) {
-                  final pokemon = filteredPokemons[index];
-                  return PokemonWidget(
-                    pokemonName: pokemon.pokemonName,
-                    pokemonUrl: pokemon.pokemonUrl,
-                  );
-                },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(bottom: 12.0),
+                    child: Text(
+                      'Lista de Pokémons',
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
+                        childAspectRatio: 3 / 4,
+                      ),
+                      itemCount: filteredPokemons.length,
+                      itemBuilder: (context, index) {
+                        final pokemon = filteredPokemons[index];
+                        return PokemonWidget(
+                          pokemonName: pokemon.pokemonName,
+                          pokemonUrl: pokemon.pokemonUrl,
+                        );
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
     );
