@@ -22,7 +22,7 @@ class PokemonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(12.0),
+      padding: const EdgeInsets.all(1.0),
       child: GestureDetector(
         onTap: () {
           Modular.to.pushNamed(AppRoutes.pokemonProfile,
@@ -34,6 +34,7 @@ class PokemonWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
           ),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image.network(
                 scale: 0.5,
@@ -43,9 +44,9 @@ class PokemonWidget extends StatelessWidget {
                 },
               ),
               Text(
-                pokemonName,
+                pokemonName.toUpperCase(),
                 style: const TextStyle(
-                  fontSize: 25,
+                  fontSize: 20,
                   color: Colors.black,
                   fontWeight: FontWeight.w600,
                 ),

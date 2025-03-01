@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/src/pokemon_profile/data/repository/pokemon_profile_repository_impl.dart';
 import 'package:pokedex/src/pokemon_profile/domain/entities/pokemon_profile_entity.dart';
-import 'package:pokedex/src/pokemon_profile/view/widgets/pokemon_value_indicator_widget.dart';
+import 'package:pokedex/src/pokemon_profile/presenter/widgets/pokemon_value_indicator_widget.dart';
 
 class PokemonProfilePage extends StatefulWidget {
   final String pokemonName;
@@ -21,7 +21,6 @@ class _PokemonProfilePageState extends State<PokemonProfilePage> {
   @override
   void initState() {
     super.initState();
-    // Aqui você usa o pokemonName passado pelo Widget diretamente
     _pokemonFuture =
         PokemonProfileRepositoryImpl().getPokemon(widget.pokemonName);
   }
@@ -87,6 +86,10 @@ class _PokemonProfilePageState extends State<PokemonProfilePage> {
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
                         ),
+                      ),
+                      Text(
+                        'Tipo ${pokemon.types[0].name}',
+                        style: const TextStyle(fontSize: 20),
                       ),
                       Image.network(
                         _getPokemonImageUrl(pokemon.id),

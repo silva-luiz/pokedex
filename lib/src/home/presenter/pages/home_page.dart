@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:pokedex/src/home/domain/entities/pokemon_entity.dart';
 import 'package:pokedex/src/home/domain/repository/home_repository.dart';
-import 'package:pokedex/src/home/view/widgets/pokemon_widget.dart';
+import 'package:pokedex/src/home/presenter/widgets/pokemon_widget.dart';
+import 'package:pokedex/src/home/presenter/widgets/search_text_field_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -42,7 +43,9 @@ class _HomePageState extends State<HomePage> {
   void onChangedText() {
     setState(() {});
     filteredPokemons = pokemons
-        .where((pokemon) => pokemon.pokemonName.contains(searchController.text))
+        .where((pokemon) => pokemon.pokemonName
+            .toLowerCase()
+            .contains(searchController.text.toLowerCase()))
         .toList();
   }
 
@@ -52,7 +55,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: Colors.red,
         title: Text(
-          'Pokedex - v$_version',
+          'Bem-vindo ao Pokedex - v$_version',
           style: const TextStyle(
             fontWeight: FontWeight.w600,
             color: Colors.white,
@@ -64,13 +67,10 @@ class _HomePageState extends State<HomePage> {
             children: [
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: TextField(
-                    controller: searchController,
-                  ),
+                  padding: const EdgeInsets.all(10.0),
+                  child: SearchTextFieldWidget(controller: searchController),
                 ),
               ),
-              const Icon(Icons.search)
             ],
           ),
         ),
@@ -97,8 +97,8 @@ class _HomePageState extends State<HomePage> {
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10,
+                        crossAxisSpacing: 5,
+                        mainAxisSpacing: 5,
                         childAspectRatio: 3 / 4,
                       ),
                       itemCount: filteredPokemons.length,
