@@ -42,7 +42,7 @@ class _PokemonProfilePageState extends State<PokemonProfilePage> {
       appBar: AppBar(
         backgroundColor: Colors.red,
         title: const Text(
-          'Informações do Pokémon',
+          'Pokémon information',
           style: TextStyle(
             fontWeight: FontWeight.w600,
             color: Colors.white,
@@ -88,7 +88,7 @@ class _PokemonProfilePageState extends State<PokemonProfilePage> {
                         ),
                       ),
                       Text(
-                        'Tipo ${pokemon.types[0].name}',
+                        'Type ${pokemon.types.join(', ')}',
                         style: const TextStyle(fontSize: 20),
                       ),
                       Image.network(
@@ -102,7 +102,7 @@ class _PokemonProfilePageState extends State<PokemonProfilePage> {
                       const Padding(
                         padding: EdgeInsets.symmetric(vertical: 10.0),
                         child: Text(
-                          'Informações e atributos',
+                          'Base status',
                           style: TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
@@ -118,13 +118,13 @@ class _PokemonProfilePageState extends State<PokemonProfilePage> {
                           child: Column(
                             children: [
                               PokemonValueIndicatorWidget(
-                                label: 'Altura: $pokemonHeight m',
+                                label: 'Height: $pokemonHeight m',
                                 value: pokemonHeight.toInt(),
                                 totalValue: 5,
                                 color: Colors.lightBlue,
                               ),
                               PokemonValueIndicatorWidget(
-                                label: 'Peso: ${pokemon.weight / 10} kg',
+                                label: 'Weight: ${pokemon.weight / 10} kg',
                                 value: pokemonWeight.toInt(),
                                 totalValue: 1000,
                                 color: Colors.green,

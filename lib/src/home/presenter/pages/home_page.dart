@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: Colors.red,
         title: Text(
-          'Bem-vindo ao Pokedex - v$_version',
+          'Welcome to Pokédex - v$_version',
           style: const TextStyle(
             fontWeight: FontWeight.w600,
             color: Colors.white,
@@ -85,7 +85,7 @@ class _HomePageState extends State<HomePage> {
                   const Padding(
                     padding: EdgeInsets.only(bottom: 12.0),
                     child: Text(
-                      'Lista de Pokémons',
+                      'Pokémons list',
                       style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.bold,

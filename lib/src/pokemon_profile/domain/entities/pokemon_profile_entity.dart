@@ -1,5 +1,4 @@
 import 'package:pokedex/src/pokemon_profile/data/models/pokemon_stat_response_dto.dart';
-import 'package:pokedex/src/pokemon_profile/data/models/pokemon_type_response_dto.dart';
 
 class PokemonProfileEntity {
   final String name;
@@ -7,7 +6,7 @@ class PokemonProfileEntity {
   final int height;
   final int weight;
   final List<PokemonStatResponseDto> stats;
-  final List<PokemonTypeResponseDto> types;
+  final List<String> types;
 
   PokemonProfileEntity({
     required this.name,

@@ -6,7 +6,7 @@ class HomeDatasource {
 
   Future<List<PokemonEntity>> getPokemons() async {
     final result = await _client
-        .get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=1015');
+        .get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=1025');
 
     final pokemons = (result.data['results'] as List)
         .map((e) => PokemonEntity(

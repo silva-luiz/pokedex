@@ -17,7 +17,7 @@ class SearchTextFieldWidget extends StatelessWidget {
       child: TextField(
         decoration: const InputDecoration(
           contentPadding: EdgeInsets.all(8),
-          hintText: 'Pesquisar Pokemon',
+          hintText: 'Search Pokémon',
           suffixIcon: Icon(
             Icons.search,
             color: Colors.black54,
