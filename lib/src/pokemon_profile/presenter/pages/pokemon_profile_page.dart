@@ -106,8 +106,13 @@ class _PokemonProfilePageState extends State<PokemonProfilePage> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    Colors.white,
-                    firstTypeColor, // Substituindo Colors.red pela cor do primeiro tipo
+                    typeColorMap[pokemon.types.length > 1
+                            ? pokemon.types[1]
+                            : Colors.white] ??
+                        Colors.white,
+                    pokemon.types.isNotEmpty
+                        ? typeColorMap[pokemon.types[0]] ?? Colors.white
+                        : Colors.white,
                   ],
                 ),
               ),
