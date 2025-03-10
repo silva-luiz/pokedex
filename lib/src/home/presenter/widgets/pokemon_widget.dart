@@ -6,7 +6,6 @@ class PokemonWidget extends StatelessWidget {
   final String pokemonName;
   final String pokemonUrl;
 
-
   const PokemonWidget({
     super.key,
     required this.pokemonName,
@@ -69,8 +68,6 @@ class PokemonWidget extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 5),
-              // Passando a lista de tipos para o PokemonTypeBadgeWidget
-              // PokemonTypeBadgeWidget(types: ['fire']),
             ],
           ),
         ),
