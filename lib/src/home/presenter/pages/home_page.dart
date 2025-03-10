@@ -40,15 +40,6 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
-  // void onChangedText() {
-  //   setState(() {});
-  //   filteredPokemons = pokemons
-  //       .where((pokemon) => pokemon.pokemonName
-  //           .toLowerCase()
-  //           .contains(searchController.text.toLowerCase()))
-  //       .toList();
-  // }
-
   void onChangedText() {
     final searchText = searchController.text.toLowerCase();
     final newFilteredPokemons = pokemons.where((pokemon) {
@@ -92,9 +83,20 @@ class _HomePageState extends State<HomePage> {
       ),
       body: filteredPokemons.isEmpty
           ? const Center(
-              child: Text(
-                'No Pokémon found!',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.warning_amber_rounded,
+                    color: Colors.orange,
+                    size: 35,
+                  ),
+                  SizedBox(width: 10),
+                  Text(
+                    'No Pokémon found!',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                ],
               ),
             )
           : Padding(
