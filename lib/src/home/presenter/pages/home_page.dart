@@ -40,13 +40,28 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
+  // void onChangedText() {
+  //   setState(() {});
+  //   filteredPokemons = pokemons
+  //       .where((pokemon) => pokemon.pokemonName
+  //           .toLowerCase()
+  //           .contains(searchController.text.toLowerCase()))
+  //       .toList();
+  // }
+
   void onChangedText() {
-    setState(() {});
-    filteredPokemons = pokemons
-        .where((pokemon) => pokemon.pokemonName
-            .toLowerCase()
-            .contains(searchController.text.toLowerCase()))
-        .toList();
+    final searchText = searchController.text.toLowerCase();
+    final newFilteredPokemons = pokemons.where((pokemon) {
+      final pokemonName = pokemon.pokemonName.toLowerCase();
+      final pokemonId = pokemon.pokemonId.toString();
+      return pokemonName.contains(searchText) || pokemonId.contains(searchText);
+    }).toList();
+
+    if (filteredPokemons != newFilteredPokemons) {
+      setState(() {
+        filteredPokemons = newFilteredPokemons;
+      });
+    }
   }
 
   @override
@@ -76,7 +91,12 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: filteredPokemons.isEmpty
-          ? const Center(child: CircularProgressIndicator())
+          ? const Center(
+              child: Text(
+                'No Pokémon found!',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            )
           : Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(

@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pokedex/src/pokemon_profile/presenter/widgets/pokemon_type_badge_widget.dart';
 import 'package:pokedex/src/shared/routes/app_routes.dart';
 
 class PokemonWidget extends StatelessWidget {
   final String pokemonName;
   final String pokemonUrl;
-  // final List<String> pokemonTypes; // Lista de tipos do Pokémon
+
 
   const PokemonWidget({
     super.key,
     required this.pokemonName,
     required this.pokemonUrl,
-    // required this.pokemonTypes, // Recebe os tipos como parâmetro
   });
 
   String _getPokemonImageUrl() {

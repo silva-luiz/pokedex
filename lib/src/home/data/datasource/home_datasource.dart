@@ -8,13 +8,16 @@ class HomeDatasource {
     final result = await _client
         .get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=1025');
 
-    final pokemons = (result.data['results'] as List)
-        .map((e) => PokemonEntity(
-              pokemonId: e['name'],
-              pokemonName: e['name'],
-              pokemonUrl: e['url'],
-            ))
-        .toList(); // se não converter isso para lista, 'pokemons' será um 'iterable' e não terá as propriedades de lista necessárias
+    final pokemons = (result.data['results'] as List).map((e) {
+      // Extraindo o ID da URL
+      final id = int.parse(e['url'].split('/')[
+          6]); // A URL possui o ID no formato: "https://pokeapi.co/api/v2/pokemon/{id}/"
+      return PokemonEntity(
+        pokemonId: id.toString(),
+        pokemonName: e['name'],
+        pokemonUrl: e['url'],
+      );
+    }).toList();
 
     return pokemons;
   }
