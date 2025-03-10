@@ -5,3 +5,9 @@ Projeto Flutter com intuito de estudar sobre conexões com API, aplicação da n
 ## API utilizada
 
 - [Pokémon API](https://pokeapi.co/)
+
+## Gerando um APK
+
+Para gerar um APK para android, basta executar o comando:
+
+`flutter build apk --release`
