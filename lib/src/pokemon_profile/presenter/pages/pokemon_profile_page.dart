@@ -93,18 +93,21 @@ class PokemonProfilePage extends StatelessWidget {
                               Wrap(
                                 spacing: 8.0,
                                 children: pokemon.types.map((type) {
+                                  Color backgroundColor =
+                                      viewModel.typeColorMap[type] ??
+                                          Colors.grey;
                                   return Chip(
                                     side: BorderSide.none,
                                     label: Text(
                                       viewModel.capitalizeFirstLetter(type),
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        color: Colors.white,
+                                        color: backgroundColor == Colors.yellow
+                                            ? Colors.black
+                                            : Colors.white,
                                       ),
                                     ),
-                                    backgroundColor:
-                                        viewModel.typeColorMap[type] ??
-                                            Colors.grey,
+                                    backgroundColor: backgroundColor,
                                   );
                                 }).toList(),
                               ),
