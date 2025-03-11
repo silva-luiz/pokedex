@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pokedex/src/home/presenter/viewmodels/home_view_model.dart';
 import 'package:pokedex/src/home/presenter/widgets/pokemon_widget.dart';
 import 'package:pokedex/src/home/presenter/widgets/search_text_field_widget.dart';
@@ -43,7 +42,7 @@ class HomePage extends StatelessWidget {
             ),
           ),
         ),
-        drawer: PokeDrawer(),
+        drawer: const PokeDrawer(),
         body: Consumer<HomeViewModel>(
           builder: (context, viewModel, _) {
             if (viewModel.filteredPokemons.isEmpty) {

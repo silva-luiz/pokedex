@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pokedex/src/home/presenter/viewmodels/home_view_model.dart';
-import 'package:provider/provider.dart';
 
 class PokeDrawer extends StatelessWidget {
   const PokeDrawer({super.key});

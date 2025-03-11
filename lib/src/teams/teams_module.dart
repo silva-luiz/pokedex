@@ -4,6 +4,6 @@ import 'package:pokedex/src/teams/presenter/pages/teams_list_page.dart';
 class TeamsModule extends Module {
   @override
   void routes(r) {
-    r.child('/', child: (context) => TeamsListPage());
+    r.child('/', child: (context) => const TeamsListPage());
   }
 }

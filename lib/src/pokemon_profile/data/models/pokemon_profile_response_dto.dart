@@ -7,9 +7,9 @@ class PokemonProfileResponseDto extends PokemonProfileEntity {
     required super.id,
     required super.height,
     required super.weight,
-    required List<PokemonStatResponseDto> stats,
-    required List<String> types,
-  }) : super(stats: stats, types: types);
+    required super.stats,
+    required super.types,
+  });
 
   factory PokemonProfileResponseDto.fromJson(Map<String, dynamic> json) {
     return PokemonProfileResponseDto(
