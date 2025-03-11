@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/src/shared/widgets/poke_drawer.dart';
+import 'package:pokedex/src/teams/presenter/widgets/pokemon_team_widget.dart';
 
 class TeamsListPage extends StatefulWidget {
   const TeamsListPage({super.key});
@@ -7,6 +8,8 @@ class TeamsListPage extends StatefulWidget {
   @override
   State<TeamsListPage> createState() => _TeamsListPageState();
 }
+
+List<PokemonTeamWidget> pokemonTeams = [PokemonTeamWidget()];
 
 class _TeamsListPageState extends State<TeamsListPage> {
   @override
@@ -22,10 +25,41 @@ class _TeamsListPageState extends State<TeamsListPage> {
           ),
         ),
       ),
-      body: const Center(
-        child: Text('My Teams'),
-      ),
       drawer: const PokeDrawer(),
+      body: pokemonTeams.isEmpty
+          ? Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'No teams created yet!',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      // Lógica para criar um novo time
+                      print('Create New Team');
+                    },
+                    child: const Text('Create New Team'),
+                  ),
+                ],
+              ),
+            )
+          : ListView.builder(
+              itemBuilder: (context, index) => pokemonTeams[index],
+              itemCount: pokemonTeams.length,
+            ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () {
+          // Lógica para adicionar um novo time
+          print('Add New Team');
+        },
+      ),
     );
   }
 }
