@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pokedex/src/home/presenter/viewmodels/home_view_model.dart';
 import 'package:pokedex/src/home/presenter/widgets/pokemon_widget.dart';
 import 'package:pokedex/src/home/presenter/widgets/search_text_field_widget.dart';
+import 'package:pokedex/src/shared/widgets/poke_drawer.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
@@ -14,16 +16,12 @@ class HomePage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.red,
-          title: Consumer<HomeViewModel>(
-            builder: (context, viewModel, _) {
-              return Text(
-                'Welcome to Pokédex - v${viewModel.version}',
-                style: const TextStyle(
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
-                ),
-              );
-            },
+          title: const Text(
+            'Welcome to Pokédex',
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(50),
@@ -45,6 +43,7 @@ class HomePage extends StatelessWidget {
             ),
           ),
         ),
+        drawer: PokeDrawer(),
         body: Consumer<HomeViewModel>(
           builder: (context, viewModel, _) {
             if (viewModel.filteredPokemons.isEmpty) {
