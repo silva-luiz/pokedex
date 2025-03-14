@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/src/shared/colors/colors.dart';
+import 'package:pokedex/src/shared/widgets/buttons/generic_button.dart';
 import 'package:pokedex/src/shared/widgets/inputs/generic_input.dart';
 import 'package:pokedex/src/shared/widgets/outlined_text/outlined_text_widget.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -59,12 +60,15 @@ class _AuthPageState extends State<AuthPage> {
                     hintText: 'Enter your password',
                   ),
                   const SizedBox(height: 20),
+                  GenericButton.primary(label: 'Entrar', onPressed: () {}),
+                  GenericButton.tertiary(
+                      label: 'Criar conta', onPressed: () {}),
                   ElevatedButton(
                     onPressed: () {
                       Navigator.pushNamed(context, '/home');
                     },
                     child: const Text('Go to Home'),
-                  ),
+                  ), //TODO: RETIRAR DEPOIS QUE A TELA ESTIVER PRONTA
                 ],
               ),
             ),
