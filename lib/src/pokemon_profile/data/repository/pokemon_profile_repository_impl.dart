@@ -1,5 +1,5 @@
 import 'package:pokedex/src/pokemon_profile/data/datasource/pokemon_profile_datasource.dart';
-import 'package:pokedex/src/pokemon_profile/data/models/pokemon_profile_response_dto.dart';
+import 'package:pokedex/src/pokemon_profile/data/models/response/pokemon_profile_response_dto.dart';
 import 'package:pokedex/src/pokemon_profile/domain/entities/pokemon_profile_entity.dart';
 import 'package:pokedex/src/pokemon_profile/domain/repository/pokemon_profile_repository.dart';
 

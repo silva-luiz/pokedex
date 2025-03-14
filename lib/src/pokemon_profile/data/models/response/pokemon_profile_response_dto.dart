@@ -1,4 +1,4 @@
-import 'package:pokedex/src/pokemon_profile/data/models/pokemon_stat_response_dto.dart';
+import 'package:pokedex/src/pokemon_profile/data/models/response/pokemon_stat_response_dto.dart';
 import 'package:pokedex/src/pokemon_profile/domain/entities/pokemon_profile_entity.dart';
 
 class PokemonProfileResponseDto extends PokemonProfileEntity {
