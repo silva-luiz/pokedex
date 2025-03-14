@@ -25,6 +25,13 @@ class OutlinedTextWidget extends StatelessWidget {
         Text(
           text,
           style: TextStyle(
+            shadows: [
+              Shadow(
+                blurRadius: 7.0,
+                color: outlineColor,
+                offset: const Offset(11, 10),
+              ),
+            ],
             fontSize: fontSize,
             fontFamily: 'PokemonFont',
             foreground: Paint()

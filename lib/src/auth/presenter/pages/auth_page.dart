@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pokedex/src/shared/colors/colors.dart';
+import 'package:pokedex/src/shared/scaffold/poke_scaffold_widget.dart';
 import 'package:pokedex/src/shared/widgets/buttons/generic_button.dart';
 import 'package:pokedex/src/shared/widgets/inputs/generic_input.dart';
 import 'package:pokedex/src/shared/widgets/outlined_text/outlined_text_widget.dart';
@@ -30,68 +32,37 @@ class _AuthPageState extends State<AuthPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Stack(
-          children: [
-            Positioned.fill(
-              child: Image.asset(
-                'assets/images/background_image.jpg',
-                fit: BoxFit.cover,
+    return PokeScaffoldWidget(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 120.0),
+        child: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 20.0),
+                child: OutlinedTextWidget(text: 'Pokédex'),
               ),
-            ),
-            Positioned.fill(
-              child: Container(
-                color: AppColors.white.withOpacity(0.2),
+              const SizedBox(height: 20),
+              const GenericInput(
+                hintText: 'Enter your e-mail',
+                suffixIcon: Icon(Icons.email),
+                keyboardType: TextInputType.emailAddress,
               ),
-            ),
-            Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const OutlinedTextWidget(text: 'Pokédex'),
-                  const SizedBox(height: 20),
-                  const GenericInput(
-                    hintText: 'Enter your e-mail',
-                    suffixIcon: Icon(Icons.email),
-                    keyboardType: TextInputType.emailAddress,
-                  ),
-                  const PasswordInput(
-                    hintText: 'Enter your password',
-                  ),
-                  const SizedBox(height: 20),
-                  GenericButton.primary(label: 'Entrar', onPressed: () {}),
-                  GenericButton.tertiary(
-                      label: 'Criar conta', onPressed: () {}),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/home');
-                    },
-                    child: const Text('Go to Home'),
-                  ), //TODO: RETIRAR DEPOIS QUE A TELA ESTIVER PRONTA
-                ],
+              const PasswordInput(
+                hintText: 'Enter your password',
               ),
-            ),
-            // Rodapé com a versão do app
-            Positioned(
-              bottom: 20, // Distância do rodapé
-              left: 0,
-              right: 0,
-              child: Align(
-                alignment: Alignment.center,
-                child: Text(
-                  _appVersion.isNotEmpty
-                      ? 'Version $_appVersion'
-                      : 'Loading version...',
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.primaryColor,
-                  ),
-                ),
-              ),
-            ),
-          ],
+              const SizedBox(height: 20),
+              GenericButton.primary(label: 'Login', onPressed: () {}),
+              GenericButton.tertiary(
+                  label: 'Create Pokédex',
+                  onPressed: () => Modular.to.navigate('/register')),
+              ElevatedButton(
+                onPressed: () => Modular.to.navigate('/home'),
+                child: const Text('Go to Home'),
+              ), //TODO: RETIRAR DEPOIS QUE A TELA ESTIVER PRONTA
+            ],
+          ),
         ),
       ),
     );
