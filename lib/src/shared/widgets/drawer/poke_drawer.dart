@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pokedex/src/shared/colors/colors.dart';
 
 class PokeDrawer extends StatelessWidget {
   const PokeDrawer({super.key});
@@ -8,18 +9,18 @@ class PokeDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Drawer(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.white,
         child: ListView(
           children: [
             const DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.red,
+                color: AppColors.primaryColor,
               ),
               child: Center(
                   child: Text(
                 'Welcome to Pokedex',
                 style: TextStyle(
-                    color: Colors.white,
+                    color: AppColors.white,
                     fontSize: 27,
                     fontWeight: FontWeight.bold),
               )),

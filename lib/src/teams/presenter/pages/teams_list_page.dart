@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/src/shared/widgets/poke_drawer.dart';
+import 'package:pokedex/src/shared/colors/colors.dart';
+import 'package:pokedex/src/shared/widgets/drawer/poke_drawer.dart';
 import 'package:pokedex/src/teams/presenter/widgets/pokemon_team_widget.dart';
 
 class TeamsListPage extends StatefulWidget {
@@ -16,11 +17,11 @@ class _TeamsListPageState extends State<TeamsListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.red,
+        backgroundColor: AppColors.primaryColor,
         title: const Text(
           'My Teams',
           style: TextStyle(
-            color: Colors.white,
+            color: AppColors.white,
             fontWeight: FontWeight.bold,
           ),
         ),

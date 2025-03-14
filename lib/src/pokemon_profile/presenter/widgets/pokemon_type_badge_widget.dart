@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/src/shared/colors/colors.dart';
 
 class PokemonTypeBadgeWidget extends StatelessWidget {
   final List<String> types;
@@ -31,7 +32,7 @@ class PokemonTypeBadgeWidget extends StatelessWidget {
   Color _getTypeColor(String type) {
     switch (type.toLowerCase()) {
       case 'fire':
-        return Colors.red;
+        return AppColors.primaryColor;
       case 'water':
         return Colors.blue;
       case 'grass':

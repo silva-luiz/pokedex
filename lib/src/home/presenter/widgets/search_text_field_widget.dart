@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/src/shared/colors/colors.dart';
 
 class SearchTextFieldWidget extends StatelessWidget {
   final TextEditingController controller;
@@ -11,7 +12,7 @@ class SearchTextFieldWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.white,
         borderRadius: BorderRadius.circular(12),
       ),
       child: TextField(

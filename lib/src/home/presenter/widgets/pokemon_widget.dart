@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pokedex/src/shared/colors/colors.dart';
 import 'package:pokedex/src/shared/routes/app_routes.dart';
 
 class PokemonWidget extends StatelessWidget {
@@ -56,14 +57,15 @@ class PokemonWidget extends StatelessWidget {
                 scale: 0.7,
                 _getPokemonImageUrl(),
                 errorBuilder: (context, error, stackTrace) {
-                  return const Icon(Icons.error, color: Colors.red, size: 50);
+                  return const Icon(Icons.error,
+                      color: AppColors.primaryColor, size: 50);
                 },
               ),
               Text(
                 pokemonName.toUpperCase(),
                 style: const TextStyle(
                   fontSize: 20,
-                  color: Colors.black,
+                  color: AppColors.black,
                   fontWeight: FontWeight.w600,
                 ),
               ),

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pokedex/src/home/presenter/viewmodels/home_view_model.dart';
 import 'package:pokedex/src/home/presenter/widgets/pokemon_widget.dart';
 import 'package:pokedex/src/home/presenter/widgets/search_text_field_widget.dart';
-import 'package:pokedex/src/shared/widgets/poke_drawer.dart';
+import 'package:pokedex/src/shared/colors/colors.dart';
+import 'package:pokedex/src/shared/widgets/drawer/poke_drawer.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
@@ -14,11 +15,11 @@ class HomePage extends StatelessWidget {
       create: (_) => HomeViewModel(),
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.red,
+          backgroundColor: AppColors.primaryColor,
           title: const Text(
             'Welcome to Pokédex',
             style: TextStyle(
-              color: Colors.white,
+              color: AppColors.white,
               fontWeight: FontWeight.bold,
             ),
           ),
