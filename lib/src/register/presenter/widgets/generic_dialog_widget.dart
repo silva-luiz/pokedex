@@ -23,6 +23,7 @@ class GenericDialogWidget extends StatelessWidget {
             color: AppColors.primaryColor,
           )),
       content: Text(
+        style: TextStyle(fontSize: 16),
         content,
       ),
       actions: actions,

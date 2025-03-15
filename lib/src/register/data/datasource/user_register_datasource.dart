@@ -10,8 +10,8 @@ class UserRegisterDatasource {
         email: user.userEmail,
         password: user.userPassword,
       );
-    } catch (e) {
-      throw Exception('Registration failed: ${e.toString()}');
+    } on FirebaseException catch (e) {
+      throw (e.code);
     }
   }
 }
