@@ -10,7 +10,7 @@ class PokeDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Drawer(
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.tertiaryColor,
         child: Column(
           children: [
             const DrawerHeader(
@@ -26,14 +26,20 @@ class PokeDrawer extends StatelessWidget {
             ListTile(
               title: const Text(
                 'Home',
-                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 22),
+                style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 22,
+                    color: AppColors.white),
               ),
               onTap: () => Modular.to.navigate('/home'),
             ),
             ListTile(
               title: const Text(
                 'My teams',
-                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 22),
+                style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 22,
+                    color: AppColors.white),
               ),
               onTap: () => Modular.to.navigate('/my-teams'),
             ),
