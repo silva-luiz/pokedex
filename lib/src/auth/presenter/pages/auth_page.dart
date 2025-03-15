@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:provider/provider.dart';
 import 'package:pokedex/src/shared/colors/colors.dart';
 import 'package:pokedex/src/shared/scaffold/poke_scaffold_widget.dart';
 import 'package:pokedex/src/shared/widgets/buttons/generic_button.dart';
 import 'package:pokedex/src/shared/widgets/inputs/generic_input.dart';
 import 'package:pokedex/src/shared/widgets/outlined_text/outlined_text_widget.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:pokedex/src/auth/presenter/viewmodels/auth_viewmodel.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -35,6 +37,8 @@ class _AuthPageState extends State<AuthPage> {
 
   @override
   Widget build(BuildContext context) {
+    final authViewModel = Provider.of<AuthViewModel>(context);
+
     return PokeScaffoldWidget(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 120.0),
@@ -58,22 +62,43 @@ class _AuthPageState extends State<AuthPage> {
                 hintText: 'Enter your password',
               ),
               const SizedBox(height: 20),
-              GenericButton.primary(label: 'Login', onPressed: () {}),
+              // Botão de Login
+              GenericButton.primary(
+                label: 'Login',
+                onPressed: authViewModel.isLoading
+                    ? null
+                    : () async {
+                        try {
+                          await authViewModel.signIn(
+                            _emailController.text,
+                            _passwordController.text,
+                          );
+                          Modular.to.navigate('/home');
+                        } catch (e) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Erro ao fazer login: $e')),
+                          );
+                        }
+                      },
+              ),
+              if (authViewModel.isLoading)
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: CircularProgressIndicator(),
+                ),
               GenericButton.tertiary(
-                  label: 'Create Pokédex',
-                  onPressed: () => Modular.to.navigate('/register')),
-              ElevatedButton(
-                onPressed: () => Modular.to.navigate('/home'),
-                child: const Text('Go to Home'),
-              ), //TODO: RETIRAR DEPOIS QUE A TELA ESTIVER PRONTA
+                label: 'Create Pokédex',
+                onPressed: () => Modular.to.navigate('/register'),
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20.0),
                 child: Text(
                   'App Version: v$_appVersion',
                   style: TextStyle(
-                      fontSize: 14,
-                      color: AppColors.tertiaryColor,
-                      fontWeight: FontWeight.w600),
+                    fontSize: 14,
+                    color: AppColors.tertiaryColor,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ],
