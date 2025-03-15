@@ -11,7 +11,7 @@ class UserRegisterDatasource {
         password: user.userPassword,
       );
     } catch (e) {
-      throw Exception('Falha no cadastro: ${e.toString()}');
+      throw Exception('Registration failed: ${e.toString()}');
     }
   }
 }
