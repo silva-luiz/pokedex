@@ -11,7 +11,7 @@ class PokemonProfileDatasource {
 
       return result.data;
     } catch (e) {
-      throw Exception('Erro ao buscar o Pokémon: $e');
+      throw Exception('Error fetching the Pokémon: $e');
     }
   }
 }

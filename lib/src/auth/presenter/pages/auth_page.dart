@@ -76,7 +76,7 @@ class _AuthPageState extends State<AuthPage> {
                           Modular.to.navigate('/home');
                         } catch (e) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Erro ao fazer login: $e')),
+                            SnackBar(content: Text('Login error: $e')),
                           );
                         }
                       },
