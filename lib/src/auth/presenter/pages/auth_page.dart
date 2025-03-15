@@ -66,6 +66,16 @@ class _AuthPageState extends State<AuthPage> {
                 onPressed: () => Modular.to.navigate('/home'),
                 child: const Text('Go to Home'),
               ), //TODO: RETIRAR DEPOIS QUE A TELA ESTIVER PRONTA
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20.0),
+                child: Text(
+                  'App Version: v$_appVersion',
+                  style: TextStyle(
+                      fontSize: 14,
+                      color: AppColors.tertiaryColor,
+                      fontWeight: FontWeight.w600),
+                ),
+              ),
             ],
           ),
         ),

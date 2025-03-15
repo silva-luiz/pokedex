@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pokedex/src/shared/colors/colors.dart';
+import 'package:pokedex/src/shared/widgets/outlined_text/outlined_text_widget.dart';
 
 class PokeDrawer extends StatelessWidget {
   const PokeDrawer({super.key});
@@ -17,13 +18,10 @@ class PokeDrawer extends StatelessWidget {
                 color: AppColors.primaryColor,
               ),
               child: Center(
-                  child: Text(
-                'Welcome to Pokedex',
-                style: TextStyle(
-                    color: AppColors.white,
-                    fontSize: 27,
-                    fontWeight: FontWeight.bold),
-              )),
+                child: OutlinedTextWidget(
+                  text: 'Pokédex',
+                ),
+              ),
             ),
             ListTile(
               title: const Text(
