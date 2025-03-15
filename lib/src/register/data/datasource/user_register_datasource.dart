@@ -1,30 +1,17 @@
-import 'package:dio/dio.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import '../../domain/entities/user_entity.dart';
 
 class UserRegisterDatasource {
-  final Dio _client = Dio();
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-  Future<Map<String, dynamic>> registerUser(String userEmail, String userPassword) async {
-    const String firebaseApiKey = 'YOUR_FIREBASE_API_KEY'; // Substitua pela sua API Key do Firebase
-    final String url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=$firebaseApiKey';
-
+  Future registerUser(UserEntity user) async {
     try {
-      final response = await _client.post(
-        url,
-        data: {
-          'email': userEmail,
-          'password': userPassword,
-          'returnSecureToken': true,
-        },
-        options: Options(
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        ),
+      await _firebaseAuth.createUserWithEmailAndPassword(
+        email: user.userEmail,
+        password: user.userPassword,
       );
-
-      return response.data;
     } catch (e) {
-      throw Exception('An error occurred during user registration: $e');
+      throw Exception('Falha no cadastro: ${e.toString()}');
     }
   }
 }

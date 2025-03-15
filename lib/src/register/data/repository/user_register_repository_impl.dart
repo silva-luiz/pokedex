@@ -1,23 +1,22 @@
-
-
 import '../../domain/repository/user_register_repository.dart';
 import '../datasource/user_register_datasource.dart';
+import '../../domain/entities/user_entity.dart'; // Import da entidade
 
-class UserRepositoryImpl implements UserRepository {
+class UserRegisterRepositoryImpl implements UserRegisterRepository {
   final UserRegisterDatasource datasource;
 
-  UserRepositoryImpl(this.datasource);
+  UserRegisterRepositoryImpl(this.datasource);
 
   @override
-  Future<Map<String, dynamic>> registerUser(String userEmail, String userPassword) async {
+  Future<Map<String, dynamic>> registerUser(UserEntity user) async {
     try {
-      // Aqui você faz a chamada para o datasource
-      final result = await datasource.registerUser(userEmail, userPassword);
-      
+      // Chamando o datasource com a entidade UserEntity
+      final result = await datasource.registerUser(user);
+
       // Se precisar realizar alguma transformação nos dados recebidos, faça aqui
       return result;
     } catch (e) {
-      // Aqui você pode tratar erros específicos ou retornar uma exceção personalizada
+      // Tratamento de erros
       throw Exception('Failed to register user: $e');
     }
   }

@@ -1,3 +1,5 @@
-abstract class UserRepository {
-  Future<Map<String, dynamic>> registerUser(String userEmail, String userPassword);
+import '../entities/user_entity.dart';
+
+abstract class UserRegisterRepository {
+  Future<Map<String, dynamic>> registerUser(UserEntity user);
 }

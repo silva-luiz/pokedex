@@ -30,6 +30,9 @@ class _AuthPageState extends State<AuthPage> {
     });
   }
 
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return PokeScaffoldWidget(
@@ -44,12 +47,14 @@ class _AuthPageState extends State<AuthPage> {
                 child: OutlinedTextWidget(text: 'Pokédex'),
               ),
               const SizedBox(height: 20),
-              const GenericInput(
+              GenericInput(
+                controller: _emailController,
                 hintText: 'Enter your e-mail',
                 suffixIcon: Icon(Icons.email),
                 keyboardType: TextInputType.emailAddress,
               ),
-              const PasswordInput(
+              PasswordInput(
+                controller: _passwordController,
                 hintText: 'Enter your password',
               ),
               const SizedBox(height: 20),

@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/src/shared/colors/colors.dart';
+
+import '../../colors/colors.dart';
 
 class GenericInput extends StatelessWidget {
-  final String? label;
   final String hintText;
-  final Widget? suffixIcon;
   final TextInputType keyboardType;
+  final TextEditingController controller;
+  final String? label;
+  final Widget? suffixIcon;
+  final String? Function(String?)? validator;
 
   const GenericInput({
     super.key,
-    this.label,
     required this.hintText,
+    required this.controller,
     this.suffixIcon,
+    this.label,
+    this.validator,
     this.keyboardType = TextInputType.text,
   });
 
@@ -22,7 +27,9 @@ class GenericInput extends StatelessWidget {
       child: SizedBox(
         width: 350,
         child: TextFormField(
+          controller: controller,
           keyboardType: keyboardType,
+          validator: validator, // Aplicando o validador
           decoration: InputDecoration(
             filled: true,
             fillColor: AppColors.white,
@@ -49,12 +56,16 @@ class GenericInput extends StatelessWidget {
 
 class PasswordInput extends StatefulWidget {
   final String? label;
+  final TextEditingController controller;
   final String hintText;
+  final String? Function(String?)? validator;
 
   const PasswordInput({
     super.key,
     this.label,
     required this.hintText,
+    required this.controller,
+    this.validator,
   });
 
   @override
@@ -71,8 +82,10 @@ class _PasswordInputState extends State<PasswordInput> {
       child: SizedBox(
         width: 350,
         child: TextFormField(
+          controller: widget.controller,
           keyboardType: TextInputType.text,
           obscureText: _obscureText,
+          validator: widget.validator, // Aplicando o validador
           decoration: InputDecoration(
             filled: true,
             fillColor: AppColors.white,
