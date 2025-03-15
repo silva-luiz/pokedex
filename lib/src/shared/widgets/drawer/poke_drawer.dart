@@ -73,7 +73,7 @@ class PokeDrawer extends StatelessWidget {
                   Navigator.of(context).pop();
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                      content: Text('Logout realizado com sucesso!'),
+                      content: Text('Logout successful!'),
                       backgroundColor: AppColors.success,
                     ),
                   );
