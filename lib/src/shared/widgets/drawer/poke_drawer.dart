@@ -35,17 +35,17 @@ class PokeDrawer extends StatelessWidget {
               ),
               onTap: () => Modular.to.navigate('/home'),
             ),
-            ListTile(
-              title: const Text(
-                'My teams',
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 22,
-                  color: AppColors.white,
-                ),
-              ),
-              onTap: () => Modular.to.navigate('/my-teams'),
-            ),
+            // ListTile(
+            //   title: const Text(
+            //     'My teams',
+            //     style: TextStyle(
+            //       fontWeight: FontWeight.w500,
+            //       fontSize: 22,
+            //       color: AppColors.white,
+            //     ),
+            //   ),
+            //   onTap: () => Modular.to.navigate('/my-teams'),
+            // ),
             const Spacer(),
             ListTile(
               trailing: const Icon(Icons.exit_to_app, color: Colors.red),
