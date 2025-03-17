@@ -1,4 +1,4 @@
-import 'package:pokedex/src/pokemon_profile/data/models/pokemon_stat_response_dto.dart';
+import 'package:pokedex/src/pokemon_profile/data/models/response/pokemon_stat_response_dto.dart';
 import 'package:pokedex/src/pokemon_profile/domain/entities/pokemon_profile_entity.dart';
 
 class PokemonProfileResponseDto extends PokemonProfileEntity {
@@ -7,9 +7,9 @@ class PokemonProfileResponseDto extends PokemonProfileEntity {
     required super.id,
     required super.height,
     required super.weight,
-    required List<PokemonStatResponseDto> stats,
-    required List<String> types,
-  }) : super(stats: stats, types: types);
+    required super.stats,
+    required super.types,
+  });
 
   factory PokemonProfileResponseDto.fromJson(Map<String, dynamic> json) {
     return PokemonProfileResponseDto(

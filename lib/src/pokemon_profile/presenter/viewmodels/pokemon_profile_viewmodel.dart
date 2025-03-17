@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/src/pokemon_profile/data/repository/pokemon_profile_repository_impl.dart';
 import 'package:pokedex/src/pokemon_profile/domain/entities/pokemon_profile_entity.dart';
+import 'package:pokedex/src/shared/colors/colors.dart';
 
 class PokemonProfileViewModel extends ChangeNotifier {
   final String pokemonName;
@@ -21,15 +22,19 @@ class PokemonProfileViewModel extends ChangeNotifier {
     return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png';
   }
 
+  String getPokemonGifUrl(int id) {
+    return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/$id.gif';
+  }
+
   final Map<String, Color> typeColorMap = {
-    'fire': Colors.red,
+    'fire': AppColors.primaryColor,
     'water': Colors.blue,
     'grass': Colors.green,
     'electric': Colors.yellow,
     'psychic': Colors.pink,
     'ice': Colors.lightBlue,
     'dragon': Colors.purple,
-    'dark': Colors.black,
+    'dark': AppColors.black,
     'fairy': Colors.pinkAccent,
     'normal': Colors.brown,
     'fighting': Colors.orange,

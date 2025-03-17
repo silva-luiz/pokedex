@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pokedex/src/pokemon_profile/domain/entities/pokemon_profile_entity.dart';
 import 'package:pokedex/src/pokemon_profile/presenter/viewmodels/pokemon_profile_viewmodel.dart';
 import 'package:pokedex/src/pokemon_profile/presenter/widgets/pokemon_value_indicator_widget.dart';
+import 'package:pokedex/src/shared/colors/colors.dart';
 import 'package:provider/provider.dart';
 
 class PokemonProfilePage extends StatelessWidget {
@@ -18,16 +19,16 @@ class PokemonProfilePage extends StatelessWidget {
       create: (_) => PokemonProfileViewModel(pokemonName),
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.red,
+          backgroundColor: AppColors.primaryColor,
           title: const Text(
             'Pokémon Information',
             style: TextStyle(
               fontWeight: FontWeight.w600,
-              color: Colors.white,
+              color: AppColors.white,
             ),
           ),
           iconTheme: const IconThemeData(
-            color: Colors.white,
+            color: AppColors.white,
           ),
         ),
         body: Consumer<PokemonProfileViewModel>(
@@ -43,7 +44,8 @@ class PokemonProfilePage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Icon(Icons.error, color: Colors.red, size: 50),
+                        const Icon(Icons.error,
+                            color: AppColors.primaryColor, size: 50),
                         Text('Erro: ${snapshot.error}'),
                       ],
                     ),
@@ -65,12 +67,12 @@ class PokemonProfilePage extends StatelessWidget {
                         colors: [
                           viewModel.typeColorMap[pokemon.types.length > 1
                                   ? pokemon.types[1]
-                                  : Colors.white] ??
-                              Colors.white,
+                                  : AppColors.white] ??
+                              AppColors.white,
                           pokemon.types.isNotEmpty
                               ? viewModel.typeColorMap[pokemon.types[0]] ??
-                                  Colors.white
-                              : Colors.white,
+                                  AppColors.white
+                              : AppColors.white,
                         ],
                       ),
                     ),
@@ -103,8 +105,8 @@ class PokemonProfilePage extends StatelessWidget {
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: backgroundColor == Colors.yellow
-                                            ? Colors.black
-                                            : Colors.white,
+                                            ? AppColors.black
+                                            : AppColors.white,
                                       ),
                                     ),
                                     backgroundColor: backgroundColor,
@@ -113,11 +115,18 @@ class PokemonProfilePage extends StatelessWidget {
                               ),
                               const SizedBox(height: 16),
                               Image.network(
-                                viewModel.getPokemonImageUrl(pokemon.id),
+                                viewModel.getPokemonGifUrl(pokemon.id),
                                 scale: 0.3,
                                 errorBuilder: (context, error, stackTrace) {
-                                  return const Icon(Icons.error,
-                                      color: Colors.red, size: 50);
+                                  return Image.network(
+                                    viewModel.getPokemonImageUrl(pokemon.id),
+                                    scale: 0.3,
+                                    errorBuilder: (context, error, stackTrace) {
+                                      return const Icon(Icons.error,
+                                          color: AppColors.primaryColor,
+                                          size: 50);
+                                    },
+                                  );
                                 },
                               ),
                               const Padding(
@@ -132,7 +141,7 @@ class PokemonProfilePage extends StatelessWidget {
                               ),
                               Container(
                                 decoration: BoxDecoration(
-                                    color: Colors.white,
+                                    color: AppColors.white,
                                     border: Border.all(),
                                     borderRadius: BorderRadius.circular(12)),
                                 child: Padding(
