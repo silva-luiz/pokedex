@@ -21,6 +21,7 @@ class PokeDrawer extends StatelessWidget {
               child: Center(
                 child: OutlinedTextWidget(
                   text: 'Pokédex',
+                  fontSize: 45,
                 ),
               ),
             ),
@@ -48,13 +49,13 @@ class PokeDrawer extends StatelessWidget {
             // ),
             const Spacer(),
             ListTile(
-              trailing: const Icon(Icons.exit_to_app, color: Colors.red),
+              trailing: const Icon(Icons.exit_to_app, color: AppColors.secondaryColor),
               title: const Text(
                 'Logout',
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 22,
-                  color: Colors.red,
+                  color: AppColors.secondaryColor,
                 ),
               ),
               onTap: () async {
