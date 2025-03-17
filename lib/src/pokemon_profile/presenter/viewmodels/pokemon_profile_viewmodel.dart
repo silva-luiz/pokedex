@@ -22,6 +22,10 @@ class PokemonProfileViewModel extends ChangeNotifier {
     return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png';
   }
 
+  String getPokemonGifUrl(int id) {
+    return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/$id.gif';
+  }
+
   final Map<String, Color> typeColorMap = {
     'fire': AppColors.primaryColor,
     'water': Colors.blue,

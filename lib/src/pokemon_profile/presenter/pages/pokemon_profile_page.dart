@@ -115,11 +115,18 @@ class PokemonProfilePage extends StatelessWidget {
                               ),
                               const SizedBox(height: 16),
                               Image.network(
-                                viewModel.getPokemonImageUrl(pokemon.id),
+                                viewModel.getPokemonGifUrl(pokemon.id),
                                 scale: 0.3,
                                 errorBuilder: (context, error, stackTrace) {
-                                  return const Icon(Icons.error,
-                                      color: AppColors.primaryColor, size: 50);
+                                  return Image.network(
+                                    viewModel.getPokemonImageUrl(pokemon.id),
+                                    scale: 0.3,
+                                    errorBuilder: (context, error, stackTrace) {
+                                      return const Icon(Icons.error,
+                                          color: AppColors.primaryColor,
+                                          size: 50);
+                                    },
+                                  );
                                 },
                               ),
                               const Padding(
