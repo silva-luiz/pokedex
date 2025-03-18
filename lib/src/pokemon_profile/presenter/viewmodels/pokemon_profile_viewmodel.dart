@@ -19,7 +19,7 @@ class PokemonProfileViewModel extends ChangeNotifier {
   }
 
   String getPokemonImageUrl(int id) {
-    return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png';
+    return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$id.png';
   }
 
   String getPokemonGifUrl(int id) {

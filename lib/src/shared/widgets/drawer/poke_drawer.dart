@@ -20,6 +20,7 @@ class PokeDrawer extends StatelessWidget {
               ),
               child: Center(
                 child: OutlinedTextWidget(
+                  fontSize: 50,
                   text: 'Pokédex',
                 ),
               ),

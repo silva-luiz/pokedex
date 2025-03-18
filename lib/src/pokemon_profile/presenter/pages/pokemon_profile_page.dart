@@ -120,7 +120,7 @@ class PokemonProfilePage extends StatelessWidget {
                                 errorBuilder: (context, error, stackTrace) {
                                   return Image.network(
                                     viewModel.getPokemonImageUrl(pokemon.id),
-                                    scale: 0.3,
+                                    width: 300,
                                     errorBuilder: (context, error, stackTrace) {
                                       return const Icon(Icons.error,
                                           color: AppColors.primaryColor,

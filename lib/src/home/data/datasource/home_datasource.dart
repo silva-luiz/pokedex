@@ -9,9 +9,8 @@ class HomeDatasource {
         .get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=1025');
 
     final pokemons = (result.data['results'] as List).map((e) {
-      // Extraindo o ID da URL
       final id = int.parse(e['url'].split('/')[
-          6]); // A URL possui o ID no formato: "https://pokeapi.co/api/v2/pokemon/{id}/"
+          6]);
       return PokemonEntity(
         pokemonId: id.toString(),
         pokemonName: e['name'],
