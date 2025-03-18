@@ -81,15 +81,18 @@ class _AuthPageState extends State<AuthPage> {
                         }
                       },
               ),
+              
+              GenericButton.tertiary(
+                label: 'Create Pokédex',
+                onPressed: authViewModel.isLoading ? null : () => Modular.to.navigate('/register'),
+              ),
               if (authViewModel.isLoading)
                 Padding(
                   padding: const EdgeInsets.all(10.0),
-                  child: CircularProgressIndicator(),
+                  child: CircularProgressIndicator(
+                    color: AppColors.tertiaryColor,
+                  ),
                 ),
-              GenericButton.tertiary(
-                label: 'Create Pokédex',
-                onPressed: () => Modular.to.navigate('/register'),
-              ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20.0),
                 child: Text(
