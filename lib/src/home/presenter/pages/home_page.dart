@@ -85,14 +85,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   Expanded(
-                    child: GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 5,
-                        mainAxisSpacing: 5,
-                        childAspectRatio: 3 / 4,
-                      ),
+                    child: ListView.builder(
                       itemCount: viewModel.filteredPokemons.length,
                       itemBuilder: (context, index) {
                         final pokemon = viewModel.filteredPokemons[index];

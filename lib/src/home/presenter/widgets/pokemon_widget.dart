@@ -14,11 +14,9 @@ class PokemonWidget extends StatelessWidget {
   });
 
   String _getPokemonImageUrl() {
-    final id = pokemonUrl.split('/')[6]; // Obtém o ID da URL
+    final id = pokemonUrl.split('/')[6];
     return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$id.png';
   }
-
-  // https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$id.png
 
   String _getPokemonId() {
     final id = pokemonUrl.split('/')[6];
@@ -28,7 +26,10 @@ class PokemonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(1.0),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 2.0,
+        vertical: 5.0,
+      ),
       child: GestureDetector(
         onTap: () {
           Modular.to.pushNamed(AppRoutes.pokemonProfile,
