@@ -40,21 +40,35 @@ class PokemonWidget extends StatelessWidget {
             border: Border.all(),
             borderRadius: BorderRadius.circular(12),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      '#${_getPokemonId()}',
-                      style: const TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.w600),
-                    )
-                  ],
-                ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          '#${_getPokemonId()}',
+                          style: const TextStyle(
+                              fontSize: 35, fontWeight: FontWeight.w600),
+                        )
+                      ],
+                    ),
+                  ),
+                  Text(
+                    pokemonName.toUpperCase(),
+                    style: const TextStyle(
+                      fontSize: 20,
+                      color: AppColors.black,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                ],
               ),
               Image.network(
                 width: 150,
@@ -65,15 +79,6 @@ class PokemonWidget extends StatelessWidget {
                       color: AppColors.primaryColor, size: 50);
                 },
               ),
-              Text(
-                pokemonName.toUpperCase(),
-                style: const TextStyle(
-                  fontSize: 20,
-                  color: AppColors.black,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              const SizedBox(height: 5),
             ],
           ),
         ),
