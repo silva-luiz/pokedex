@@ -43,32 +43,32 @@ class PokemonWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          '#${_getPokemonId()}',
-                          style: const TextStyle(
-                              fontSize: 35, fontWeight: FontWeight.w600),
-                        )
-                      ],
+              Container(
+                width: 200,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        '#${_getPokemonId()}',
+                        style: const TextStyle(
+                            fontSize: 35, fontWeight: FontWeight.w600),
+                      ),
                     ),
-                  ),
-                  Text(
-                    pokemonName.toUpperCase(),
-                    style: const TextStyle(
-                      fontSize: 20,
-                      color: AppColors.black,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const SizedBox(height: 5),
-                ],
+                    Wrap(children: [
+                      Text(
+                        pokemonName.toUpperCase(),
+                        style: const TextStyle(
+                          fontSize: 20,
+                          color: AppColors.black,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ]),
+                    const SizedBox(height: 5),
+                  ],
+                ),
               ),
               Image.network(
                 width: 150,
