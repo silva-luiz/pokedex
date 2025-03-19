@@ -38,48 +38,49 @@ class PokemonWidget extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             border: Border.all(),
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(20),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Container(
-                width: 200,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        '#${_getPokemonId()}',
-                        style: const TextStyle(
-                            fontSize: 35, fontWeight: FontWeight.w600),
-                      ),
-                    ),
-                    Wrap(children: [
-                      Text(
-                        pokemonName.toUpperCase(),
-                        style: const TextStyle(
-                          fontSize: 20,
-                          color: AppColors.black,
-                          fontWeight: FontWeight.w600,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Container(
+                  width: 200,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          '#${_getPokemonId()}',
+                          style: const TextStyle(
+                              fontSize: 35, fontWeight: FontWeight.w600),
                         ),
                       ),
-                    ]),
-                    const SizedBox(height: 5),
-                  ],
+                      Wrap(children: [
+                        Text(
+                          pokemonName.toUpperCase(),
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ]),
+                    ],
+                  ),
                 ),
-              ),
-              Image.network(
-                width: 150,
-                height: 150,
-                _getPokemonImageUrl(),
-                errorBuilder: (context, error, stackTrace) {
-                  return const Icon(Icons.error,
-                      color: AppColors.primaryColor, size: 50);
-                },
-              ),
-            ],
+                Image.network(
+                  width: 150,
+                  height: 150,
+                  _getPokemonImageUrl(),
+                  errorBuilder: (context, error, stackTrace) {
+                    return const Icon(Icons.error,
+                        color: AppColors.primaryColor, size: 50);
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

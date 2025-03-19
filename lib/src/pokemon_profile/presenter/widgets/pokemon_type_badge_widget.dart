@@ -19,40 +19,44 @@ class PokemonTypeBadgeWidget extends StatelessWidget {
           child: Chip(
             label: Text(
               type.toUpperCase(),
-              style: const TextStyle(),
+              style: const TextStyle(color: AppColors.white),
             ),
             backgroundColor: _getTypeColor(type),
+            shape: RoundedRectangleBorder(
+              side: BorderSide.none,
+              borderRadius: BorderRadius.circular(
+                  20.0), // Defina o valor que quiser para o raio
+            ),
           ),
         );
       }).toList(),
     );
   }
 
-  // Função para definir a cor do badge com base no tipo
   Color _getTypeColor(String type) {
-    switch (type.toLowerCase()) {
-      case 'fire':
-        return AppColors.primaryColor;
-      case 'water':
-        return Colors.blue;
-      case 'grass':
-        return Colors.green;
-      case 'electric':
-        return Colors.yellow;
-      case 'bug':
-        return Colors.greenAccent;
-      case 'normal':
-        return Colors.brown;
-      case 'psychic':
-        return Colors.purple;
-      case 'rock':
-        return Colors.brown;
-      case 'ghost':
-        return Colors.deepPurple;
-      case 'fighting':
-        return Colors.orange;
-      default:
-        return Colors.grey;
-    }
+    final Map<String, Color> typeColorMap = {
+      'fire': AppColors.primaryColor,
+      'water': Colors.blue,
+      'grass': Colors.green,
+      'electric': Colors.yellow,
+      'psychic': Colors.pink,
+      'ice': Colors.lightBlue,
+      'dragon': Colors.purple,
+      'dark': AppColors.black,
+      'fairy': Colors.pinkAccent,
+      'normal': Colors.brown,
+      'fighting': Colors.orange,
+      'flying': Colors.lightBlueAccent,
+      'poison': Colors.purpleAccent,
+      'ground': Colors.brown.shade600,
+      'rock': Colors.grey.shade700,
+      'bug': Colors.lightGreen,
+      'ghost': Colors.deepPurple,
+      'steel': Colors.blueGrey,
+      'unknown': Colors.grey,
+      'shadow': Colors.black54,
+    };
+
+    return typeColorMap[type.toLowerCase()] ?? Colors.grey;
   }
 }
