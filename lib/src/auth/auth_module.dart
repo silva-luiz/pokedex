@@ -1,8 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pokedex/src/auth/data/repository/auth_repository_impl.dart';
-import 'package:pokedex/src/auth/domain/repository/auth_repository.dart';
-import 'package:pokedex/src/auth/presenter/pages/auth_page.dart';
-import 'package:pokedex/src/auth/presenter/viewmodels/auth_viewmodel.dart';
+import 'package:pokedex/src/auth/auth_binds.dart';
+import 'package:pokedex/src/auth/auth_routes.dart';
 import 'package:pokedex/src/shared/shared_module.dart';
 
 class AuthModule extends Module {
@@ -12,16 +10,8 @@ class AuthModule extends Module {
       ];
 
   @override
-  void binds(Injector i) {
-    i.add<AuthRepository>(AuthRepositoryImpl.new);
-    i.add<AuthViewModel>(AuthViewModel.new);
-  }
+  void binds(Injector i) => authBinds(i);
 
   @override
-  void routes(RouteManager r) {
-    r.child(
-      '/',
-      child: (_) => const AuthPage(),
-    );
-  }
+  void routes(RouteManager r) => authRoutes(r);
 }

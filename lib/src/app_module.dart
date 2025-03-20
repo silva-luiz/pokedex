@@ -5,6 +5,8 @@ import 'package:pokedex/src/register/register_module.dart';
 import 'package:pokedex/src/teams/teams_module.dart';
 import 'package:pokedex/src/pokemon_profile/pokemon_profile_module.dart';
 
+import 'favorites/favorites_module.dart';
+
 class AppModule extends Module {
   @override
   List<Module> get imports => [
@@ -12,6 +14,7 @@ class AppModule extends Module {
         RegisterModule(),
         HomeModule(),
         PokemonProfileModule(),
+        FavoritesModule(),
         TeamsModule(),
       ];
 
@@ -22,6 +25,7 @@ class AppModule extends Module {
       ..module('/register', module: RegisterModule())
       ..module('/home', module: HomeModule())
       ..module('/pokemon-profile', module: PokemonProfileModule())
+      ..module('/favorites', module: FavoritesModule())
       ..module('/my-teams', module: TeamsModule());
   }
 }
