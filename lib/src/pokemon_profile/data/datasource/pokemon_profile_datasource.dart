@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class PokemonProfileDatasource {
-  final Dio _client = Dio();
+  final _client = Modular.get<Dio>();
 
   final String baseUrl = 'https://pokeapi.co/api/v2/pokemon/';
 

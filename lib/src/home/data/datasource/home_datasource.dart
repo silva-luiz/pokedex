@@ -1,8 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pokedex/src/home/domain/entities/pokemon_entity.dart';
 
 class HomeDatasource {
-  final Dio _client = Dio();
+  final _client = Modular.get<Dio>();
 
   Future<List<PokemonEntity>> getPokemons() async {
     final result = await _client
