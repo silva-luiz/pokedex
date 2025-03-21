@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import '../../../shared/scaffold/poke_scaffold_widget.dart';
 import '../../../shared/widgets/buttons/generic_button.dart';
 import '../../../shared/widgets/inputs/generic_input.dart';
@@ -13,63 +13,69 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => RegisterViewModel(),
-      child: Consumer<RegisterViewModel>(
-        builder: (context, viewModel, _) {
-          return PokeScaffoldWidget(
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const OutlinedTextWidget(text: 'Register'),
-                  const Padding(
-                    padding: EdgeInsets.all(18.0),
-                    child: Text(
-                      'Fill in the following details to create a new Pokédex account',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 20,
-                      ),
+    final viewModel = Modular.get<RegisterViewmodel>();
+    return Observer(
+      builder: (context) {
+        return PokeScaffoldWidget(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const OutlinedTextWidget(text: 'Register'),
+                const Padding(
+                  padding: EdgeInsets.all(18.0),
+                  child: Text(
+                    'Fill in the following details to create a new Pokédex account',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 20,
                     ),
                   ),
-                  const SizedBox(height: 20),
-                  GenericInput(
-                    validator: EmailValidator.validate,
-                    controller: viewModel.emailController,
-                    hintText: 'Enter your e-mail',
-                    suffixIcon: Icon(Icons.email),
-                    keyboardType: TextInputType.emailAddress,
+                ),
+                const SizedBox(height: 20),
+                GenericInput(
+                  validator: EmailValidator.validate,
+                  controller: viewModel.emailController,
+                  hintText: 'Enter your e-mail',
+                  suffixIcon: Icon(Icons.email),
+                  keyboardType: TextInputType.emailAddress,
+                ),
+                PasswordInput(
+                  validator: PasswordValidator.validate,
+                  controller: viewModel.passwordController,
+                  hintText: 'Enter your password',
+                ),
+                PasswordInput(
+                  validator: PasswordValidator.validate,
+                  controller: viewModel.rePasswordController,
+                  hintText: 'Re-enter your password',
+                ),
+                const SizedBox(height: 20),
+                GenericButton.primary(
+                  label: 'Create Pokédex',
+                  onPressed: () => viewModel.registerUser(context),
+                ),
+                GenericButton.tertiary(
+                  label: 'Go back',
+                  onPressed: () {
+                    Modular.to.canPop()
+                        ? Modular.to.pop()
+                        : Modular.to.navigate('/');
+                  },
+                ),
+                if (viewModel.errorMessage.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text(
+                      viewModel.errorMessage,
+                      style: TextStyle(color: Colors.red, fontSize: 16),
+                    ),
                   ),
-                  PasswordInput(
-                    validator: PasswordValidator.validate,
-                    controller: viewModel.passwordController,
-                    hintText: 'Enter your password',
-                  ),
-                  PasswordInput(
-                    validator: PasswordValidator.validate,
-                    controller: viewModel.rePasswordController,
-                    hintText: 'Re-enter your password',
-                  ),
-                  const SizedBox(height: 20),
-                  GenericButton.primary(
-                    label: 'Create Pokédex',
-                    onPressed: () => viewModel.registerUser(context),
-                  ),
-                  GenericButton.tertiary(
-                    label: 'Go back',
-                    onPressed: () {
-                      Modular.to.canPop()
-                          ? Modular.to.pop()
-                          : Modular.to.navigate('/');
-                    },
-                  ),
-                ],
-              ),
+              ],
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

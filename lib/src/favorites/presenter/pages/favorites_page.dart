@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -6,6 +7,8 @@ import '../../domain/entities/favorite_pokemon_entity.dart';
 import '../viewmodels/favorites_viewmodel.dart';
 
 class FavoritesPage extends StatelessWidget {
+  final userId = FirebaseAuth.instance.currentUser?.uid;
+
   @override
   Widget build(BuildContext context) {
     final viewModel = Modular.get<FavoritePokemonsViewModel>();
@@ -15,7 +18,7 @@ class FavoritesPage extends StatelessWidget {
       ),
       drawer: const PokeDrawer(),
       body: StreamBuilder<List<FavoritePokemonEntity>>(
-        stream: viewModel.getFavoritePokemons(viewModel.userId),
+        stream: viewModel.getFavoritePokemons(userId ?? ''),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());

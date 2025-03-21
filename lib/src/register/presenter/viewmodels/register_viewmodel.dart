@@ -1,21 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pokedex/src/register/data/datasource/user_register_datasource.dart';
-import 'package:pokedex/src/register/domain/entities/user_entity.dart';
-import 'package:pokedex/src/shared/widgets/buttons/generic_button.dart';
+import 'package:mobx/mobx.dart';
 
+import '../../../shared/widgets/buttons/generic_button.dart';
+import '../../data/datasource/user_register_datasource.dart';
+import '../../domain/entities/user_entity.dart';
 import '../widgets/generic_dialog_widget.dart';
 
-class RegisterViewModel extends ChangeNotifier {
+part 'register_viewmodel.g.dart';
+
+class RegisterViewmodel = _RegisterViewmodelBase with _$RegisterViewmodel;
+
+abstract class _RegisterViewmodelBase with Store {
   final UserRegisterDatasource _userRegisterDatasource =
       UserRegisterDatasource();
 
-  // Controladores de texto
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController rePasswordController = TextEditingController();
 
-  // Função de registro
+  @observable
+  String errorMessage = '';
+
+  @observable
+  bool isSuccess = false;
+
+  @action
   Future<void> registerUser(BuildContext context) async {
     final email = emailController.text.trim();
     final password = passwordController.text.trim();
@@ -40,7 +50,6 @@ class RegisterViewModel extends ChangeNotifier {
     }
   }
 
-  // Exibe o diálogo de erro
   void _showErrorDialog(BuildContext context, String message) {
     showDialog(
       context: context,
@@ -57,7 +66,6 @@ class RegisterViewModel extends ChangeNotifier {
     );
   }
 
-  // Exibe o diálogo de sucesso
   void _showSuccessDialog(BuildContext context, String message) {
     showDialog(
       context: context,

@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pokedex/src/favorites/presenter/viewmodels/favorites_viewmodel.dart';
@@ -29,6 +30,8 @@ class PokemonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userId = FirebaseAuth.instance.currentUser?.uid;
+
     final viewModel = Modular.get<FavoritePokemonsViewModel>();
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -82,7 +85,7 @@ class PokemonWidget extends StatelessWidget {
                         onPressed: () {
                           viewModel.addFavoritePokemon(
                             FavoritePokemonEntity(
-                              userId: viewModel.userId,
+                              userId: userId ?? '',
                               pokemonId: _getPokemonId(),
                               pokemonName: pokemonName,
                               pokemonImage: _getPokemonImageUrl(),

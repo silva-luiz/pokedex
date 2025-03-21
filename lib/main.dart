@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pokedex/src/register/presenter/viewmodels/register_viewmodel.dart';
-import 'package:provider/provider.dart'; // Adicionando o Provider
+
 import 'package:pokedex/src/app_module.dart';
 import 'package:pokedex/src/app_widget.dart';
 import 'package:pokedex/src/home/presenter/pages/home_page.dart';
@@ -15,18 +14,9 @@ void main() async {
   );
 
   runApp(
-    MultiProvider(
-      providers: [
-        // Adicione o AuthViewModel como um Provider
-        // ChangeNotifierProvider(
-        //   create: (_) => AuthViewModel(AuthRepositoryImpl()),
-        // ),
-        ChangeNotifierProvider(create: (_) => RegisterViewModel()),
-      ],
-      child: ModularApp(
-        module: AppModule(),
-        child: const AppWidget(),
-      ),
+    ModularApp(
+      module: AppModule(),
+      child: const AppWidget(),
     ),
   );
 }

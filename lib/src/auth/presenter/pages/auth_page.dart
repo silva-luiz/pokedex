@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_mobx/flutter_mobx.dart'; // MobX
-import 'package:provider/provider.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import 'package:pokedex/src/shared/colors/colors.dart';
@@ -88,7 +87,6 @@ class _AuthPageState extends State<AuthPage> {
                   );
                 },
               ),
-
               Observer(
                 builder: (_) {
                   return GenericButton.tertiary(

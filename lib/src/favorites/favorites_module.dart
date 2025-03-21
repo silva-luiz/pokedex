@@ -29,13 +29,9 @@ class FavoritesModule extends Module {
     // ViewModel
     i.addSingleton<FavoritePokemonsViewModel>(
       () {
-        final userId = FirebaseAuth.instance.currentUser?.uid;
-        if (userId == null) {
-          throw Exception('User unauthenticated');
-        }
+        
         return FavoritePokemonsViewModel(
           repository: i.get<FavoritePokemonRepository>(),
-          userId: userId,
         );
       },
     );
