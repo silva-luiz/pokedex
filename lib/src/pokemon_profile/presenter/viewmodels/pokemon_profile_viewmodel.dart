@@ -48,4 +48,25 @@ class PokemonProfileViewModel extends ChangeNotifier {
     'unknown': Colors.grey,
     'shadow': Colors.black54,
   };
+
+  final Map<String, String> typeIconMap = {
+    'fire': 'assets/images/icons/types_icons/fire.png',
+    'water': 'assets/images/icons/types_icons/water.png',
+    'grass': 'assets/images/icons/types_icons/grass.png',
+    'electric': 'assets/images/icons/types_icons/electric.png',
+    'ice': 'assets/images/icons/types_icons/ice.png',
+    'fighting': 'assets/images/icons/types_icons/fighting.png',
+    'poison': 'assets/images/icons/types_icons/poison.png',
+    'ground': 'assets/images/icons/types_icons/ground.png',
+    'flying': 'assets/images/icons/types_icons/flying.png',
+    'psychic': 'assets/images/icons/types_icons/psychic.png',
+    'bug': 'assets/images/icons/types_icons/bug.png',
+    'rock': 'assets/images/icons/types_icons/rock.png',
+    'ghost': 'assets/images/icons/types_icons/ghost.png',
+    'dragon': 'assets/images/icons/types_icons/dragon.png',
+    'dark': 'assets/images/icons/types_icons/dark.png',
+    'steel': 'assets/images/icons/types_icons/steel.png',
+    'fairy': 'assets/images/icons/types_icons/fairy.png',
+    'normal': 'assets/images/icons/types_icons/normal.png',
+  };
 }

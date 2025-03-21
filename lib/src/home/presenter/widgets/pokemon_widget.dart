@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pokedex/src/shared/colors/colors.dart';
@@ -70,14 +71,16 @@ class PokemonWidget extends StatelessWidget {
                     ],
                   ),
                 ),
-                Image.network(
+                CachedNetworkImage(
                   width: 150,
                   height: 150,
-                  _getPokemonImageUrl(),
-                  errorBuilder: (context, error, stackTrace) {
-                    return const Icon(Icons.error,
-                        color: AppColors.primaryColor, size: 50);
-                  },
+                  imageUrl: _getPokemonImageUrl(),
+                  placeholder: (context, url) => CircularProgressIndicator(
+                    color: AppColors.tertiaryColor,
+                    strokeWidth: 7,
+                    strokeCap: StrokeCap.round,
+                  ),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
               ],
             ),

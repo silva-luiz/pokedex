@@ -98,18 +98,54 @@ class PokemonProfilePage extends StatelessWidget {
                                   Color backgroundColor =
                                       viewModel.typeColorMap[type] ??
                                           Colors.grey;
-                                  return Chip(
-                                    side: BorderSide.none,
-                                    label: Text(
-                                      viewModel.capitalizeFirstLetter(type),
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: backgroundColor == Colors.yellow
-                                            ? AppColors.black
-                                            : AppColors.white,
-                                      ),
+
+                                  // Pega o caminho completo do ícone no Map
+                                  String iconPath = viewModel
+                                          .typeIconMap[type.toLowerCase()] ??
+                                      'assets/images/icons/types_icons/default.png';
+
+                                  return Container(
+                                    padding: EdgeInsets.all(8.0),
+                                    decoration: BoxDecoration(
+                                      color: backgroundColor,
+                                      borderRadius: BorderRadius.circular(12.0),
                                     ),
-                                    backgroundColor: backgroundColor,
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Container(
+                                          width: 40.0,
+                                          height: 40.0,
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: ClipOval(
+                                              child: Image.asset(
+                                                iconPath,
+                                                fit: BoxFit.contain,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                            width:
+                                                8.0), // Espaçamento entre a imagem e o texto
+
+                                        Text(
+                                          viewModel.capitalizeFirstLetter(type),
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color:
+                                                backgroundColor == Colors.yellow
+                                                    ? AppColors.black
+                                                    : AppColors.white,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   );
                                 }).toList(),
                               ),
