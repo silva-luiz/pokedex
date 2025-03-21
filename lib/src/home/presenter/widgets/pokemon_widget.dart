@@ -1,8 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pokedex/src/favorites/presenter/viewmodels/favorites_viewmodel.dart';
 import 'package:pokedex/src/shared/colors/colors.dart';
 import 'package:pokedex/src/shared/routes/app_routes.dart';
+
+import '../../../favorites/domain/entities/favorite_pokemon_entity.dart';
 
 class PokemonWidget extends StatelessWidget {
   final String pokemonName;
@@ -26,6 +29,7 @@ class PokemonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = Modular.get<FavoritePokemonsViewModel>();
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 2.0,
@@ -71,16 +75,34 @@ class PokemonWidget extends StatelessWidget {
                     ],
                   ),
                 ),
-                CachedNetworkImage(
-                  width: 150,
-                  height: 150,
-                  imageUrl: _getPokemonImageUrl(),
-                  placeholder: (context, url) => CircularProgressIndicator(
-                    color: AppColors.tertiaryColor,
-                    strokeWidth: 7,
-                    strokeCap: StrokeCap.round,
-                  ),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          viewModel.addFavoritePokemon(
+                            FavoritePokemonEntity(
+                              userId: viewModel.userId,
+                              pokemonId: _getPokemonId(),
+                              pokemonName: pokemonName,
+                              pokemonImage: _getPokemonImageUrl(),
+                              timestamp: DateTime.now(),
+                            ),
+                          );
+                        },
+                        icon: Icon(Icons.favorite_outline)),
+                    CachedNetworkImage(
+                      width: 150,
+                      height: 150,
+                      imageUrl: _getPokemonImageUrl(),
+                      placeholder: (context, url) => CircularProgressIndicator(
+                        color: AppColors.tertiaryColor,
+                        strokeWidth: 7,
+                        strokeCap: StrokeCap.round,
+                      ),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
+                    ),
+                  ],
                 ),
               ],
             ),
