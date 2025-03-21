@@ -1,16 +1,29 @@
+import 'package:mobx/mobx.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex/src/pokemon_profile/data/repository/pokemon_profile_repository_impl.dart';
 import 'package:pokedex/src/pokemon_profile/domain/entities/pokemon_profile_entity.dart';
 import 'package:pokedex/src/shared/colors/colors.dart';
 
-class PokemonProfileViewModel extends ChangeNotifier {
+part 'pokemon_profile_viewmodel.g.dart';
+
+class PokemonProfileViewModel = _PokemonProfileViewModelBase with _$PokemonProfileViewModel;
+
+abstract class _PokemonProfileViewModelBase with Store {
   final String pokemonName;
+  
+  @observable
   late Future<PokemonProfileEntity> _pokemonFuture;
 
-  PokemonProfileViewModel(this.pokemonName) {
+  _PokemonProfileViewModelBase(this.pokemonName) {
+    _loadPokemonProfile();
+  }
+
+  @action
+  Future<void> _loadPokemonProfile() async {
     _pokemonFuture = PokemonProfileRepositoryImpl().getPokemon(pokemonName);
   }
 
+  @computed
   Future<PokemonProfileEntity> get pokemonFuture => _pokemonFuture;
 
   String capitalizeFirstLetter(String text) {

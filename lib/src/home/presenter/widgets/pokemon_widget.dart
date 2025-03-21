@@ -36,7 +36,7 @@ class PokemonWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 2.0,
-        vertical: 5.0,
+        vertical: 10.0,
       ),
       child: GestureDetector(
         onTap: () {
@@ -45,8 +45,15 @@ class PokemonWidget extends StatelessWidget {
         },
         child: Container(
           decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.black.withOpacity(0.3),
+                  offset: Offset(7, 7),
+                  blurRadius: 4.0),
+            ],
             border: Border.all(),
             borderRadius: BorderRadius.circular(20),
+            color: AppColors.white,
           ),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
