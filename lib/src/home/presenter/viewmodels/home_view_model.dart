@@ -1,34 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:mobx/mobx.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:pokedex/src/home/domain/entities/pokemon_entity.dart';
-import 'package:pokedex/src/home/domain/repository/home_repository.dart';
 
-class HomeViewModel extends ChangeNotifier {
+import '../../domain/entities/pokemon_entity.dart';
+import '../../domain/repository/home_repository.dart';
+part 'home_view_model.g.dart';
+
+class HomeViewModel = _HomeViewModelBase with _$HomeViewModel;
+
+abstract class _HomeViewModelBase with Store {
+  @observable
   List<PokemonEntity> pokemons = [];
+
+  @observable
   List<PokemonEntity> filteredPokemons = [];
+
+  @observable
   String version = '';
 
   final TextEditingController searchController = TextEditingController();
 
-  HomeViewModel() {
+  _HomeViewModelBase() {
     _loadVersion();
     _fetchPokemons();
     searchController.addListener(_onChangedText);
   }
 
+  @action
   Future<void> _loadVersion() async {
     final packageInfo = await PackageInfo.fromPlatform();
     version = '${packageInfo.version} (${packageInfo.buildNumber})';
-    notifyListeners();
   }
 
+  @action
   Future<void> _fetchPokemons() async {
     final pokemonList = await HomeRepository().getPokemons();
     pokemons = pokemonList;
     filteredPokemons = pokemonList;
-    notifyListeners();
   }
 
+  @action
   void _onChangedText() {
     final searchText = searchController.text.toLowerCase();
     final newFilteredPokemons = pokemons.where((pokemon) {
@@ -39,13 +50,6 @@ class HomeViewModel extends ChangeNotifier {
 
     if (filteredPokemons != newFilteredPokemons) {
       filteredPokemons = newFilteredPokemons;
-      notifyListeners();
     }
-  }
-
-  @override
-  void dispose() {
-    searchController.dispose();
-    super.dispose();
   }
 }

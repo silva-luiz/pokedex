@@ -15,7 +15,6 @@ void main() async {
   );
 
   runApp(
-    // MultiProvider para adicionar o Provider ao app
     MultiProvider(
       providers: [
         // Adicione o AuthViewModel como um Provider
