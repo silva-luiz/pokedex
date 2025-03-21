@@ -80,7 +80,7 @@ class PokeDrawer extends StatelessWidget {
                 );
 
                 try {
-                  final authViewModel = Modular.get<AuthViewModel>();
+                  final authViewModel = Modular.get<AuthViewmodel>();
                   await authViewModel.signOut();
 
                   Navigator.of(context).pop();

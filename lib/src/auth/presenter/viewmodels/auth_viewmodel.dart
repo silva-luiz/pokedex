@@ -1,22 +1,32 @@
-// presenter/viewmodels/auth_viewmodel.dart
-import 'package:flutter/material.dart';
+import 'package:mobx/mobx.dart';
+
 import '../../domain/entities/user_entity.dart';
 import '../../domain/repository/auth_repository.dart';
 
-class AuthViewModel with ChangeNotifier {
+part 'auth_viewmodel.g.dart';
+
+class AuthViewmodel = _AuthViewmodelBase with _$AuthViewmodel;
+
+abstract class _AuthViewmodelBase with Store {
   final AuthRepository _authRepository;
 
-  AuthViewModel(this._authRepository);
+  _AuthViewmodelBase(this._authRepository);
 
+  @observable
   UserEntity? _currentUser;
+
+  @computed
   UserEntity? get currentUser => _currentUser;
 
+  @observable
   bool _isLoading = false;
+
+  @computed
   bool get isLoading => _isLoading;
 
+  @action
   Future<void> signIn(String email, String password) async {
     _isLoading = true;
-    notifyListeners();
 
     try {
       _currentUser =
@@ -25,13 +35,12 @@ class AuthViewModel with ChangeNotifier {
       rethrow;
     } finally {
       _isLoading = false;
-      notifyListeners();
     }
   }
 
+  @action
   Future<void> signOut() async {
     await _authRepository.signOut();
     _currentUser = null;
-    notifyListeners();
   }
 }

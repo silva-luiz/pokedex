@@ -6,5 +6,5 @@ import 'presenter/viewmodels/auth_viewmodel.dart';
 
 void authBinds(Injector i) {
   i.addLazySingleton<AuthRepository>(AuthRepositoryImpl.new);
-  i.addLazySingleton<AuthViewModel>(AuthViewModel.new);
+  i.addLazySingleton<AuthViewmodel>(AuthViewmodel.new);
 }

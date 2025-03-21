@@ -1,11 +1,11 @@
 name: pokedex
 description: "A new Flutter project."
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.1.0+1
 
 environment:
-  sdk: '>=3.4.0 <4.0.0'
+  sdk: ">=3.4.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -22,10 +22,14 @@ dependencies:
   flutter_launcher_icons: ^0.14.3
   pretty_dio_logger: ^1.4.0
   cached_network_image: ^3.4.1
+  mobx: ^2.5.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  mobx_codegen: ^2.7.0
+  build_runner: ^2.4.11
+  flutter_mobx: ^2.3.0
 
 flutter_icons:
   android: true
@@ -35,7 +39,6 @@ flutter_icons:
   flutter_lints: ^3.0.0
 
 flutter:
-
   uses-material-design: true
   assets:
     - assets/images/

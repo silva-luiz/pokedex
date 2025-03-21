@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_mobx/flutter_mobx.dart'; // MobX
 import 'package:provider/provider.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+
 import 'package:pokedex/src/shared/colors/colors.dart';
 import 'package:pokedex/src/shared/scaffold/poke_scaffold_widget.dart';
 import 'package:pokedex/src/shared/widgets/buttons/generic_button.dart';
 import 'package:pokedex/src/shared/widgets/inputs/generic_input.dart';
 import 'package:pokedex/src/shared/widgets/outlined_text/outlined_text_widget.dart';
-import 'package:package_info_plus/package_info_plus.dart';
-import 'package:pokedex/src/auth/presenter/viewmodels/auth_viewmodel.dart';
+
+import '../viewmodels/auth_viewmodel.dart';
 
 class AuthPage extends StatefulWidget {
-  const AuthPage({super.key});
+  const AuthPage({Key? key}) : super(key: key);
 
   @override
   _AuthPageState createState() => _AuthPageState();
@@ -32,12 +35,12 @@ class _AuthPageState extends State<AuthPage> {
     });
   }
 
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    final authViewModel = Provider.of<AuthViewModel>(context);
+    final authViewModel = Modular.get<AuthViewmodel>();
 
     return PokeScaffoldWidget(
       child: Padding(
@@ -54,7 +57,7 @@ class _AuthPageState extends State<AuthPage> {
               GenericInput(
                 controller: _emailController,
                 hintText: 'Enter your e-mail',
-                suffixIcon: Icon(Icons.email),
+                suffixIcon: const Icon(Icons.email),
                 keyboardType: TextInputType.emailAddress,
               ),
               PasswordInput(
@@ -62,37 +65,55 @@ class _AuthPageState extends State<AuthPage> {
                 hintText: 'Enter your password',
               ),
               const SizedBox(height: 20),
-              // Botão de Login
-              GenericButton.primary(
-                label: 'Login',
-                onPressed: authViewModel.isLoading
-                    ? null
-                    : () async {
-                        try {
-                          await authViewModel.signIn(
-                            _emailController.text,
-                            _passwordController.text,
-                          );
-                          Modular.to.navigate('/home');
-                        } catch (e) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Login error: $e')),
-                          );
-                        }
-                      },
+              // Botão de Login com MobX
+              Observer(
+                builder: (_) {
+                  return GenericButton.primary(
+                    label: 'Login',
+                    onPressed: authViewModel.isLoading
+                        ? null
+                        : () async {
+                            try {
+                              await authViewModel.signIn(
+                                _emailController.text,
+                                _passwordController.text,
+                              );
+                              Modular.to.navigate('/home');
+                            } catch (e) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text('Login error: $e')),
+                              );
+                            }
+                          },
+                  );
+                },
               ),
-              
-              GenericButton.tertiary(
-                label: 'Create Pokédex',
-                onPressed: authViewModel.isLoading ? null : () => Modular.to.navigate('/register'),
+
+              Observer(
+                builder: (_) {
+                  return GenericButton.tertiary(
+                    label: 'Create Pokédex',
+                    onPressed: authViewModel.isLoading
+                        ? null
+                        : () => Modular.to.navigate('/register'),
+                  );
+                },
               ),
-              if (authViewModel.isLoading)
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: CircularProgressIndicator(
-                    color: AppColors.tertiaryColor,
-                  ),
-                ),
+
+              Observer(
+                builder: (_) {
+                  if (authViewModel.isLoading) {
+                    return const Padding(
+                      padding: EdgeInsets.all(10.0),
+                      child: CircularProgressIndicator(
+                        color: AppColors.tertiaryColor,
+                      ),
+                    );
+                  }
+                  return const SizedBox.shrink();
+                },
+              ),
+
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20.0),
                 child: Text(

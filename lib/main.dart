@@ -8,10 +8,6 @@ import 'package:pokedex/src/home/presenter/pages/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
-// Importe o ViewModel e o Repository necessários
-import 'package:pokedex/src/auth/data/repository/auth_repository_impl.dart';
-import 'package:pokedex/src/auth/presenter/viewmodels/auth_viewmodel.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -23,9 +19,9 @@ void main() async {
     MultiProvider(
       providers: [
         // Adicione o AuthViewModel como um Provider
-        ChangeNotifierProvider(
-          create: (_) => AuthViewModel(AuthRepositoryImpl()),
-        ),
+        // ChangeNotifierProvider(
+        //   create: (_) => AuthViewModel(AuthRepositoryImpl()),
+        // ),
         ChangeNotifierProvider(create: (_) => RegisterViewModel()),
       ],
       child: ModularApp(
