@@ -1,7 +1,8 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pokedex/src/pokemon_profile/data/datasource/pokemon_profile_datasource.dart';
-import 'package:pokedex/src/pokemon_profile/presenter/pages/pokemon_profile_page.dart';
 import 'package:pokedex/src/shared/shared_module.dart';
+
+import 'pokemon_profile_binds.dart';
+import 'pokemon_profile_routes.dart';
 
 class PokemonProfileModule extends Module {
   @override
@@ -10,15 +11,8 @@ class PokemonProfileModule extends Module {
       ];
 
   @override
-  void binds(Injector i) {
-    i.add(PokemonProfileDatasource.new);
-  }
+  void binds(Injector i) => pokemonProfileBinds(i);
 
   @override
-  void routes(RouteManager r) {
-    r.child('/:name',
-        child: (_) => PokemonProfilePage(
-              pokemonName: r.args.data['name'] ?? '',
-            ));
-  }
+  void routes(RouteManager r) => pokemonProfileRoutes(r);
 }
